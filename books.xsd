@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+
+<xs:simpleType name="price">
+ <xs:restriction base="xs:integer">
+  <xs:minInclusive value="0"/>
+ </xs:restriction>
+</xs:simpleType>
+
+<xs:simpleType name="year">
+ <xs:restriction base="xs:integer">
+  <xs:minInclusive value="1900"/>
+  <xs:maxInclusive value="2014"/>
+ </xs:restriction>
+</xs:simpleType>
+
+<xs:simpleType="author">
+ <xs:restriction base="xs:string">
+  <xs:minLength value="2"/>
+  <xs:maxLength value="30"/>
+ </xs:restriction>
+</xs:simpleType>
+
+<xs:simpleType name="lang">
+ <xs:restriction base="xs:string">
+  <xs:length value="2">
+ </xs:restriction>
+</xs:simpleType>
+
+<xs:simpleType name="cover">
+ <xs:restriction base="xs:string">
+  <xs:pattern value="(hard|paper)cover"/>
+ </xs:restriction>
+</xs:simpleType>
+
+<xs:complexType name="title">
+ <xs:restriction base="xs:string">
+  <xs:minLength value="2"/>
+  <xs:maxLength value="30"/>
+ </xs:restriction>
+ <xs:attribute name="lang" type="lang" use="required"/>
+</xs:complexType>
+
+<xs:complexType name="bookstore">
+ <xs:sequence>
+  <xs:element name="book" type="book"/>
+ </xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="book">
+ <xs:sequence>
+  <xs:element name="title" type="title"/>
+  <xs:sequence>
+   <xs:element name="author" type="author"/>
+  </xs:sequence>
+  <xs:element name="year" type="year"/>
+  <xs:element name="price" type="price"/>
+ </xs:sequence>
+ <xs:attribute name="category" type="xs:string" use="required"/>
+ <xs:attribute name="cover" type="cover"/>
+</xs:complexType>
+
+<xs:element name="bookstore" type="bookstore"/>

@@ -1,3 +1,4 @@
+<!DOCTYPE bookstore SYSTEM "books.dtd">
 <bookstore>
   <book category="cooking">
     <title lang="en">Everyday Italian</title>
